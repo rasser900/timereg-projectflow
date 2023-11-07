@@ -214,6 +214,7 @@ async function startWait() {
         for (var i = 3; i < rowLength - 2; i += 1) {
             var row = table.rows[i];
             var projectFlowPsp = row.cells[2].innerText.substr(3, 10);
+            console.log("PSP number: " + projectFlowPsp);
             if (containsNonNumeric(projectFlowPsp)) continue;
 
             for (let delivery of responseJson.RegistrationsGroups) {
@@ -233,6 +234,7 @@ async function startWait() {
                             if (hourSum > 0) {
                                 var cell = row.cells[cellDayStartIndex];
 
+                                if (cell.querySelector(".ms-Icon") != null) continue;
                                 cell.focus();
                                 cell.click();
                                 await waitForSpecificElm('.FitUiControlInput', cell)
@@ -256,7 +258,6 @@ async function startWait() {
                                 input.dispatchEvent(enterEvent);
                                 input.dispatchEvent(tabEvent);
                                 insertedSomething = true;
-
                                 if (hasMoreRollIdsInTimereg && (firstIteration || deliveryHasMultipleRollIdsMap.get(caseRegistration.CaseTitle))) {
                                     cell.focus();
                                     cell.click();
