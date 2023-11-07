@@ -168,6 +168,14 @@ async function handleRollId(allRegistrations, isFirstIterationInRow) {
     return true;
 }
 
+function containsNonNumeric(string) {
+    // The regex \D matches any character that's not a digit
+    var nonNumericRegex = /\D/;
+
+    // The test() method tests for a match in a string
+    return nonNumericRegex.test(string);
+}
+
 async function startWait() {
     await waitForElm('.pfx-weeksheet .body-227 .root-228 .primarySet-209');
     $('.pfx-weeksheet .body-227 .root-228 .primarySet-209')
@@ -206,9 +214,10 @@ async function startWait() {
         for (var i = 3; i < rowLength - 2; i += 1) {
             var row = table.rows[i];
             var projectFlowPsp = row.cells[2].innerText.substr(3, 10);
+            if (containsNonNumeric(projectFlowPsp)) continue;
 
-            for (let delievery of responseJson.RegistrationsGroups) {
-                for (let caseRegistration of delievery.CaseRegistrations) {
+            for (let delivery of responseJson.RegistrationsGroups) {
+                for (let caseRegistration of delivery.CaseRegistrations) {
                     if (caseRegistration.CaseTitle.includes(projectFlowPsp)) {
                         var cellDayStartIndex = 7;
                         let firstIteration = true;
