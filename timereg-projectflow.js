@@ -214,7 +214,6 @@ async function startWait() {
         for (var i = 3; i < rowLength - 2; i += 1) {
             var row = table.rows[i];
             var projectFlowPsp = row.cells[2].innerText.substr(3, 10);
-            console.log("PSP number: " + projectFlowPsp);
             if (containsNonNumeric(projectFlowPsp)) continue;
             if (projectFlowPsp.trim() === '') continue;
 
