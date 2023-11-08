@@ -216,6 +216,7 @@ async function startWait() {
             var projectFlowPsp = row.cells[2].innerText.substr(3, 10);
             console.log("PSP number: " + projectFlowPsp);
             if (containsNonNumeric(projectFlowPsp)) continue;
+            if (projectFlowPsp.trim() === '') continue;
 
             for (let delivery of responseJson.RegistrationsGroups) {
                 for (let caseRegistration of delivery.CaseRegistrations) {
