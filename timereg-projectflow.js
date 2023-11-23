@@ -298,7 +298,7 @@ async function startWait() {
             }
         }
         if(notClosedTimeregDeliveries.length > 0) {
-            alert('Some deliveries are not closed in timereg and thus not filled.\nThese are: \n' + notClosedTimeregDeliveries.join('\n'))
+            alert('Some deliveries are not closed in timereg and thus not filled out.\nPlease close the following deliveries in timereg before using this tool: \n' + notClosedTimeregDeliveries.join('\n'))
         }
         if (!insertedSomething) {
             alert("Nothing was inserted, did you register anything during Week " + week + "?");
